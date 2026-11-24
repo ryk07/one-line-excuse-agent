@@ -19,6 +19,8 @@ def main() -> None:
         raise ValueError(f"entry line is {len(line)} characters, must be 1-160")
     if not line.strip():
         raise ValueError("entry line must not be only whitespace")
+    if line != line.strip():
+        raise ValueError("entry line must not start or end with whitespace")
     if "\n" in line or "\r" in line:
         raise ValueError("entry must be a single line")
     target = Path(os.environ.get("ENTRY_OUTPUT", "/output/entry.txt"))
